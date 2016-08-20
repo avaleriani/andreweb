@@ -1,0 +1,87 @@
+$action-color: #477dca !default;
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+// Tweak the keyframes below. Or swap them with another animation pattern at
+// https://github.com/daneden/animate.css/tree/master/source
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInRight {
+  animation-name: slideInRight;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.slideOutRight {
+  animation-name: slideOutRight;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.slideOutLeft {
+  animation-name: slideOutLeft;
+}
+
+/////////////////////////////////////////////////////////////
+
+.animate-target {
+  @include size(6em);
+  border: 22px solid #e2e2e3;
+  @include border-complete(50%);
+  margin: 0 auto 3em;
+  text-align: center;
+  -webkit-transform-style: preserve-3d;
+}
+
+button {
+  display: block;
+  margin: auto;
+  outline: none;
+  padding: 0.8em 1em;
+  text-align: center;
+}
