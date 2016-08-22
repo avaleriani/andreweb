@@ -1,3 +1,1 @@
-# Blank Project
-
-For project boostrap.
+# Andre Reisinger Project

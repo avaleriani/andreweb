@@ -1,6 +1,6 @@
 {
-    "name": "techo/colecta",
-    "description": "Techo Colecta.",
+    "name": "andre/web",
+    "description": "Andre Reisinger web.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",

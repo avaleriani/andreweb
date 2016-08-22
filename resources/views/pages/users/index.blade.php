@@ -15,7 +15,7 @@
                                 <tr class="sui-columnheader">
                                     <th class="sui-headercell">@sortablelink('id', 'Id')</th>
                                     <th class="sui-headercell">@sortablelink('nombre', 'Nombre')</th>
-                                    <th class="sui-headercell">@sortablelink('username', 'Dni')</th>
+                                    <th class="sui-headercell">@sortablelink('username', 'Nombre de usuario')</th>
                                     <th class="sui-headercell">@sortablelink('email', 'Email')</th>
                                     <th class="sui-headercell">@sortablelink('role', 'Rol')</th>
                                     <th class="sui-headercell" data-field="Acciones"><a href="#"
@@ -44,13 +44,6 @@
                                                 {{Form::button('<i class="fa fa-trash"></i>', array('type' => 'submit','class'=>'btn-no-style', 'onclick' => "return confirm('¿Confirma que desea borrar el usuario?')"))}}
                                             </span>
                                             {!! Form::close() !!}
-                                            <span class="btn-normal">
-                                                 <a data-toggle="popover"
-                                                    title="Modifica los puntos asignados al usuario" data-trigger="hover"
-                                                    href="{!! route('userPuntoIndex',$user->id) !!}">
-                                                    <i class="fa fa-braille"></i>
-                                            </a>
-                                            </span>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\UserPunto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -14,9 +13,6 @@ class UsersController extends Controller
     protected $roles;
 
     CONST ADMIN = 1;
-    CONST D_SEDE = 2;
-    CONST D_ZONAL = 3;
-    CONST J_PUNTO = 4;
     CONST PAGINATIONVALUE = 25;
 
     public function login()
@@ -49,27 +45,11 @@ class UsersController extends Controller
         return Redirect::to(route('login'));
     }
 
-    public function index(Request $request)
+    public function index(Request $request, User $users)
     {
         $roles = array(
             self::ADMIN => "Administrador",
-            self::D_SEDE => "Director de sede",
-            self::D_ZONAL => "Director de zona",
-            self::J_PUNTO => "Jefe de punto"
         );
-
-        $users = User::select('user.*');
-
-        if (!Auth::user()->isAdmin()) {
-            $users->leftJoin('user_punto', 'user.id', '=', 'user_punto.user_id');
-            $users->where('user.role', '>', Auth::user()->role);
-            $users->orWhere('user.id', '=', Auth::user()->id);
-        }else if(Auth::user()->isSede()){
-            $users->join('user_punto', 'user.id', '=', 'user_punto.user_id');
-            $users->where('user.role', '>', Auth::user()->role);
-            $users->orWhere('user.id', '=', Auth::user()->id);
-        }
-        $users->groupBy('user.id')->orderBy('role');
 
         if ($search = $request->get('busqueda')) {
             $users->search($request->get('busqueda'));
@@ -100,7 +80,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'username' => 'bail|required|unique:user|numeric',
+            'username' => 'bail|required|unique:user',
             'email' => 'required|email',
             'fnac' => 'date',
             'password' => 'required|min:3|confirmed',
@@ -122,9 +102,7 @@ class UsersController extends Controller
             $user->password = bcrypt($request->get('password'));
             $user->status = 1;
             $user->email = $request->get('email');
-            $user->colecta_id = Session::get('idColecta');
             $user->save();
-            ImportController::enviarEmailCambioPassword($user);
             Session::flash('message', 'Usuario creado');
             return Redirect::to(route('admin.users.index'));
         }
@@ -137,23 +115,7 @@ class UsersController extends Controller
         if (Auth::user()->role == 1) {
             $roles = array(
                 self::ADMIN => "Administrador",
-                self::D_SEDE => "Director de sede",
-                self::D_ZONAL => "Director de zona",
-                self::J_PUNTO => "Jefe de punto"
             );
-        } else if (Auth::user()->role == 2) {
-            $roles = array(
-                self::D_SEDE => "Director de sede",
-                self::D_ZONAL => "Director de zona",
-                self::J_PUNTO => "Jefe de punto"
-            );
-        } else if (Auth::user()->role == 3) {
-            $roles = array(
-                self::D_ZONAL => "Director de zona",
-                self::J_PUNTO => "Jefe de punto"
-            );
-        } else if (Auth::user()->role == 4) {
-            $roles = array();
         }
         return $roles;
     }
@@ -171,7 +133,7 @@ class UsersController extends Controller
     {
 
         $rules = array(
-            'username' => 'bail|required|numeric|unique:user,username,' . $id,
+            'username' => 'bail|required|unique:user,username,' . $id,
             'email' => 'required|email',
             'fnac' => 'date',
             'password' => 'required|min:3|confirmed',
@@ -203,12 +165,6 @@ class UsersController extends Controller
     {
         try {
             $user = User::find($id);
-            //Borra los users_puntos del usuario
-            $puntosUser = UserPunto::where('user_id', '=', $user->id)->get();
-
-            foreach ($puntosUser as $puntoUser) {
-                $puntoUser->delete();
-            }
             $user->delete();
 
             Session::flash('message', 'El usuario fue borrado');
@@ -216,13 +172,5 @@ class UsersController extends Controller
         } catch (\Exception $e) {
             return Redirect::back()->with('message', 'Error, el usuario no pudo ser borrado.');
         }
-    }
-
-    public function activate($id)
-    {
-        $user = User::find($id);
-        $user->update('status', 1);
-        Session::flash('message', 'El usuario fue reactivado');
-        return Redirect::to(route('admin.users.index'));
     }
 }

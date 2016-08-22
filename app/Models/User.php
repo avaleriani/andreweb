@@ -53,6 +53,11 @@ class User extends InfinityCacheModel implements AuthenticatableContract, CanRes
 
     protected $guarded = [];
 
+    public function isAdmin()
+    {
+        return $this->role == 1;
+    }
+
     public function hasRole($roles)
     {
         if ($this->role == 1) {
@@ -73,10 +78,5 @@ class User extends InfinityCacheModel implements AuthenticatableContract, CanRes
     private function checkIfUserHasRole($need_role)
     {
         return ($need_role == $this->role) ? true : false;
-    }
-
-    public function isAdmin()
-    {
-        return $this->role == 1;
     }
 }
