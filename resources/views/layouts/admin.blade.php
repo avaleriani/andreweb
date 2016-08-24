@@ -16,13 +16,9 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
     <link href="{!! asset('favicon.ico') !!}" type="image/x-icon" rel="icon"/>
 
-
-    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/font-awesome.min.css') !!}"/>
-    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/offline.css') !!}"/>
-    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/backoffice.css') !!}"/>
-
-
     <script type="text/javascript" src="{!! asset('js/admin/jquery.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('js/admin/dropzone.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('js/admin/wysiwyg.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('js/admin/backoffice.js') !!}"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -60,7 +56,17 @@
                         </li>
                     @endif
                     <li class="sep"></li>
-                    @if (Session::get('menu')["6_users"])
+                    @if (Session::get('menu')["2_projects"])
+                        <li class="sep"></li>
+                        <li class="{!! Request::is('admin/projects/index') ? 'selected' : '' !!}">
+                            <a href="{!! route('admin.projects.index') !!}">
+                                <i class="fa  fa-angle-right"></i>
+                                Proyectos
+                            </a>
+                        </li>
+                    @endif
+                    <li class="sep"></li>
+                    @if (Session::get('menu')["3_users"])
                         <li class="sep"></li>
                         <li class="{!! Request::is('admin/users/index') ? 'selected' : '' !!}">
                             <a href="{!! route('admin.users.index') !!}">
@@ -69,7 +75,6 @@
                             </a>
                         </li>
                     @endif
-                    <li class="sep"></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right navbar-user">
@@ -97,10 +102,17 @@
         @show
     </div>
 </div>
+    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/font-awesome.min.css') !!}"/>
+    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/offline.css') !!}"/>
+    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/basic.min.css') !!}"/>
+    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/dropzone.min.css') !!}"/>
+    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/wysiwyg.css') !!}"/>
+    <link rel="stylesheet" type="text/css" href="{!! asset('css/admin/backoffice.css') !!}"/>
+
+    <script>
+        $.ajaxSetup({
+            headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+        });
+    </script>
 </body>
-<script>
-    $.ajaxSetup({
-        headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
-    });
-</script>
 </html>

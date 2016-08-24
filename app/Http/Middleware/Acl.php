@@ -61,16 +61,8 @@ class Acl
         switch ($rol) {
             case 1:
                 $menu['1_home'] = true;
-                $menu['2_puntos'] = true;
-                $menu['3_zonas'] = true;
-                $menu['4_ciudads'] = true;
-                $menu['5_sedes'] = true;
-                $menu['5_voluntarios'] = true;
-                $menu['6_users'] = true;
-                $menu['7_misvoluntarios'] = true;
-                $menu['8_mismobile'] = true;
-                $menu['9_colecta'] = true;
-                $menu['10_import'] = true;
+                $menu['2_projects'] = true;
+                $menu['3_users'] = true;
                 break;
         }
         Session::set('menu', $menu);

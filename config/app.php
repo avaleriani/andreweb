@@ -164,6 +164,7 @@ return [
         Morilog\InfinityCache\InfinityCacheServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -218,6 +219,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];
