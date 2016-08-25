@@ -5,8 +5,7 @@
     <div class="row tabla">
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                @include('components.panel-heading', ['name' => 'Proyectos', 'route' => 'admin.projects.create', 'new' => 'Nuevo Proyecto'])
-                @include('components.searchbox',[$busqueda, 'clean' => true])
+                @include('components.panel-heading', ['name' => 'Imagenes', 'route' => 'admin.projects.create', 'new' => 'Upload'])
                 <div class="panel-body">
                     <div id="grid">
                         <div class="sui-gridheader">
@@ -26,7 +25,7 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                @foreach ($projects as $project)
+                                @foreach ($images as $img)
                                     <tr class="sui-row">
                                         <td class="sui-cell id">{!! $project->id !!}</td>
                                         <td class="sui-cell">{!! $project->name !!}</td>

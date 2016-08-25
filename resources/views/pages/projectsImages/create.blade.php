@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     @include('errors.message')
-    <h2>Nuevo Proyecto</h2>
+    <h2>Agregar imagenes al proyecto</h2>
     <div class="row">
         {!! Html::ul($errors->all()) !!}
 

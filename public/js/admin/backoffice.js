@@ -1,8 +1,7 @@
 dropZoneContainer = {
     init: function () {
         Dropzone.autoDiscover = false;
-        $(".dropzone").dropzone({
-            url: 'upload.php',
+        $("#dropzone").dropzone({
             paramName: "file_list", // The name that will be used to transfer the file
             maxFilesize: 5, // MB
             previewsContainer: 'dropzone-previws',
@@ -10,7 +9,7 @@ dropZoneContainer = {
             addRemoveLinks: true,
             uploadMultiple: true,
             parallelUploads: 20,
-            maxFiles: 20,
+            maxFiles: 20
         });
         var myDropzone = this;
 

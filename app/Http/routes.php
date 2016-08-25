@@ -22,6 +22,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/users/{id}', ['uses' => 'UsersController@update', 'roles' => ['admin']])->name('admin.users.update');
         Route::delete('/users/{id}', ['uses' => 'UsersController@destroy', 'roles' => ['admin']])->name('admin.users.destroy');
 
+        //Projects images
+        Route::get('/projectImage/{id}', ['uses' => 'ProjectsImagesController@index', 'roles' => ['admin']])->name('admin.projectsImages.index');
+        Route::get('/projectImage/create/{id}', ['uses' => 'ProjectsImagesController@create', 'roles' => ['admin']])->name('admin.projectsImages.create');
+        Route::post('/projectImage/store', ['uses' => 'ProjectsImagesController@store', 'roles' => ['admin']])->name('admin.projectsImages.store');
+        Route::get('/projectImage/{id}/edit', ['uses' => 'ProjectsImagesController@edit', 'roles' => ['admin']])->name('admin.projectsImages.edit');
+        Route::put('/projectImage/{id}', ['uses' => 'ProjectsImagesController@update', 'roles' => ['admin']])->name('admin.projectsImages.update');
+        Route::delete('/projectImage/{id}', ['uses' => 'ProjectsImagesController@destroy', 'roles' => ['admin']])->name('admin.projectsImages.destroy');
+
         //Projects
         Route::get('/projects', ['uses' => 'ProjectsController@index', 'roles' => ['admin']])->name('admin.projects.index');
         Route::get('/projects/create', ['uses' => 'ProjectsController@create', 'roles' => ['admin']])->name('admin.projects.create');

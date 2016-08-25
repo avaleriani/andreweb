@@ -8,7 +8,9 @@ class AdminController extends Controller
 {
     public function admin_index(Request $request)
     {
-        $user = Auth::user();
+
+
+        //mostrar algo copado  random cada vez que entras. o estadisticas de visitas ¿analytics?
 
 
         return view('pages.admin.admin_index', [

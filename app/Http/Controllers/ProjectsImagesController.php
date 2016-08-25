@@ -7,21 +7,15 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-class ProjectsController extends Controller
+class ProjectsImagesController extends Controller
 {
     CONST PAGINATIONVALUE = 10;
 
-    public function index(Request $request, Project $project)
+    public function index($id)
     {
-        if ($search = $request->get('busqueda')) {
-            $project->search($request->get('busqueda'));
-        }
-
-        return view('pages.projects.index',
-            [
-                'projects' => $project->orderBy('created_at')->sortable()->paginate(self::PAGINATIONVALUE),
-                'busqueda' => $search
-            ]);
+        return view('pages.projectsImages.index', [
+            "images" => Project::find($id)->images(),
+        ]);
     }
 
     public function show($id)
@@ -56,7 +50,7 @@ class ProjectsController extends Controller
             $project->year = $request->get('year');
             $project->save();
             Session::flash('message', 'Proyecto creado');
-            return Redirect::to(route('admin.projectsImages.create', $project->id));
+            return Redirect::to(route('admin.projects.index'));
         }
     }
 

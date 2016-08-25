@@ -50,4 +50,9 @@ class Project extends InfinityCacheModel implements AuthenticatableContract, Can
 
 
     protected $guarded = [];
+
+    public function images()
+    {
+        $this->hasManyThrough(Image::class, ProjectImage::class, 'id', 'project_id');
+    }
 }
