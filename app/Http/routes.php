@@ -16,6 +16,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         //Users
         Route::get('/users', ['uses' => 'UsersController@index', 'roles' => ['admin']])->name('admin.users.index');
+        Route::get('/users/show', ['uses' => 'UsersController@show', 'roles' => ['admin']])->name('admin.users.show');
         Route::get('/users/create', ['uses' => 'UsersController@create', 'roles' => ['admin']])->name('admin.users.create');
         Route::post('/users/store', ['uses' => 'UsersController@store', 'roles' => ['admin']])->name('admin.users.store');
         Route::get('/users/{id}/edit', ['uses' => 'UsersController@edit', 'roles' => ['admin']])->name('admin.users.edit');
@@ -37,6 +38,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/projects/{id}/edit', ['uses' => 'ProjectsController@edit', 'roles' => ['admin']])->name('admin.projects.edit');
         Route::put('/projects/{id}', ['uses' => 'ProjectsController@update', 'roles' => ['admin']])->name('admin.projects.update');
         Route::delete('/projects/{id}', ['uses' => 'ProjectsController@destroy', 'roles' => ['admin']])->name('admin.projects.destroy');
+
+        //images
+        Route::post('upload', ['uses' =>'ImageController@postUpload']);
+        Route::post('upload/delete', ['uses' =>'ImageController@deleteUpload']);
     });
 
     Route::get('login', 'UsersController@login')->name('login');

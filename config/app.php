@@ -164,7 +164,7 @@ return [
         Morilog\InfinityCache\InfinityCacheServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 

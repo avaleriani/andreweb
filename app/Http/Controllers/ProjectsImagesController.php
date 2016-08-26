@@ -14,20 +14,20 @@ class ProjectsImagesController extends Controller
     public function index($id)
     {
         return view('pages.projectsImages.index', [
-            "images" => Project::find($id)->images(),
+            "project" => Project::find($id),
         ]);
     }
 
     public function show($id)
     {
-        return view('pages.projects.show',
-            ["project", Project::find($id)]
+        return view('pages.projectsImages.show',
+            ["projectImages", Project::find($id)]
         );
     }
 
     public function create()
     {
-        return view('pages.projects.create');
+        return view('pages.projectsImages.create');
     }
 
     public function store(Request $request)

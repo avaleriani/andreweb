@@ -10,10 +10,10 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Kyslik\ColumnSortable\Sortable;
 use Morilog\InfinityCache\Model as InfinityCacheModel;
 
-class Project extends InfinityCacheModel implements AuthenticatableContract, CanResetPasswordContract
+class Project extends InfinityCacheModel
 {
 
-    use Authenticatable, CanResetPassword, Sortable, SearchTrait;
+    use Sortable, SearchTrait;
 
     protected $searchable = [
         'name',
@@ -53,6 +53,11 @@ class Project extends InfinityCacheModel implements AuthenticatableContract, Can
 
     public function images()
     {
-        $this->hasManyThrough(Image::class, ProjectImage::class, 'id', 'project_id');
+       return $this->hasMany(ProjectImage::class, 'project_id');
+    }
+
+    public function thumbnails()
+    {
+        return $this->hasMany(ProjectImage::class, 'project_id')->where('group', "thumbnail");
     }
 }

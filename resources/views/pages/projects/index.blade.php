@@ -36,6 +36,11 @@
                                         <td class="sui-cell">{!! $project->year !!}</td>
                                         <td class='actions'>
                                         <span class="btn-normal">
+                                            <a href="{!! route("admin.users.show" , $project->id) !!}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </span>
+                                        <span class="btn-normal">
                                             <a href="{!! route("admin.users.edit" , $project->id) !!}">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </a>
@@ -51,7 +56,7 @@
                                                     title="Modifica las imagenes del proyecto"
                                                     data-trigger="hover"
                                                     href="{!! route('admin.projectsImages.index',$project->id) !!}">
-                                                    <i class="fa fa-braille"></i>
+                                                    <i class="fa fa-picture-o"></i>
                                             </a>
                                             </span>
                                         </td>

@@ -7,8 +7,6 @@ use Morilog\InfinityCache\Model as InfinityCacheModel;
 
 class Image extends InfinityCacheModel
 {
-    use Authenticatable;
-
     protected $table = 'image';
 
     public $timestamps = true;
@@ -23,4 +21,9 @@ class Image extends InfinityCacheModel
 
 
     protected $guarded = [];
+
+    public function projectImage()
+    {
+        return $this->belongsTo(ProjectImage::class);
+    }
 }
