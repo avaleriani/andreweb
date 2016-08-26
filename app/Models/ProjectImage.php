@@ -13,16 +13,14 @@ class ProjectImage extends InfinityCacheModel
 
     protected $fillable = [
         'project_id',
-        'image_id',
+        'name',
+        'extension',
+        'filename',
+        'original_path',
         'group',
         'order',
     ];
     protected $guarded = [];
-
-    public function image()
-    {
-        return $this->hasOne(Image::class, 'image_id');
-    }
 
     public function project()
     {

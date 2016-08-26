@@ -26,7 +26,9 @@
                                 <tbody class="list">
                                 @foreach ($project->thumbnails() as $img)
                                     <tr class="sui-row">
-                                        <td class="sui-cell"><img src="{!! storage_path(). $img->imagen->path !!}"></td>
+                                        <td class="sui-cell"><img
+                                                    src="{!! public_path(). env('THUMBNAIL_PATH'). $img->filename !!}">
+                                        </td>
                                         <td class="sui-cell">{!! $img->name !!}</td>
                                         <td class="sui-cell">{!! $img->order !!}</td>
 
@@ -36,7 +38,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </span>
-                                        <span class="btn-normal">
+                                            <span class="btn-normal">
                                             <a href="{!! route("admin.projectImage.edit" , $img->id) !!}">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </a>

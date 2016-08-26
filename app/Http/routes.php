@@ -26,10 +26,11 @@ Route::group(['prefix' => 'admin'], function () {
         //Projects images
         Route::get('/projectImage/{id}', ['uses' => 'ProjectsImagesController@index', 'roles' => ['admin']])->name('admin.projectsImages.index');
         Route::get('/projectImage/create/{id}', ['uses' => 'ProjectsImagesController@create', 'roles' => ['admin']])->name('admin.projectsImages.create');
-        Route::post('/projectImage/store', ['uses' => 'ProjectsImagesController@store', 'roles' => ['admin']])->name('admin.projectsImages.store');
         Route::get('/projectImage/{id}/edit', ['uses' => 'ProjectsImagesController@edit', 'roles' => ['admin']])->name('admin.projectsImages.edit');
-        Route::put('/projectImage/{id}', ['uses' => 'ProjectsImagesController@update', 'roles' => ['admin']])->name('admin.projectsImages.update');
-        Route::delete('/projectImage/{id}', ['uses' => 'ProjectsImagesController@destroy', 'roles' => ['admin']])->name('admin.projectsImages.destroy');
+        Route::post('imagen/imagen', ['uses' => 'ProjectsImagesController@subirImagen'])->name('subirImagen');
+        Route::post('edit/order/imagen', ['uses' => 'ProjectsImagesController@cambiarOrdenImagen'])->name('cambiarOrdenImagen');
+        Route::post('imagen/delete', ['uses' => 'ProjectsImagesController@borrarImagen'])->name('borrarImagen');
+
 
         //Projects
         Route::get('/projects', ['uses' => 'ProjectsController@index', 'roles' => ['admin']])->name('admin.projects.index');
@@ -38,10 +39,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/projects/{id}/edit', ['uses' => 'ProjectsController@edit', 'roles' => ['admin']])->name('admin.projects.edit');
         Route::put('/projects/{id}', ['uses' => 'ProjectsController@update', 'roles' => ['admin']])->name('admin.projects.update');
         Route::delete('/projects/{id}', ['uses' => 'ProjectsController@destroy', 'roles' => ['admin']])->name('admin.projects.destroy');
-
-        //images
-        Route::post('upload', ['uses' =>'ImageController@postUpload']);
-        Route::post('upload/delete', ['uses' =>'ImageController@deleteUpload']);
     });
 
     Route::get('login', 'UsersController@login')->name('login');
